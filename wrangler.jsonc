@@ -2,6 +2,6 @@
   "name": "portfolio-tui",
   "compatibility_date": "2026-06-10",
   "assets": {
-    "directory": "./dist"
-  }
+    "directory": "./dist",
+  },
 }
