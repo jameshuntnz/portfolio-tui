@@ -1,0 +1,3 @@
+guest
+
+(but you probably want {{link:cmd:cat about.txt}}cat about.txt{{/link}} — try that instead)

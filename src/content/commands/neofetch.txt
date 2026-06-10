@@ -1,0 +1,12 @@
+{{bold}}{{accent}}{{deco}}   ·        ✦   {{/}}  {{bold}}{{accent}}guest{{/}}{{dim}}:{{/}} jameshunt.nz
+{{bold}}{{accent}}{{deco}}        ✧   ·   {{/}}  {{bold}}{{accent}}os{{/}}{{dim}}:{{/}} Auckland, New Zealand
+{{bold}}{{accent}}{{deco}}✦             · {{/}}  {{bold}}{{accent}}role{{/}}{{dim}}:{{/}} Senior Software Engineer @ Foster Moore
+{{bold}}{{accent}}{{deco}}     ·    ✧     {{/}}  {{bold}}{{accent}}focus{{/}}{{dim}}:{{/}} Distributed systems · high-performance JVM services
+{{bold}}{{accent}}{{deco}}  ·         ✦   {{/}}  {{bold}}{{accent}}side quest{{/}}{{dim}}:{{/}} Co-Founder & Founding Engineer @ WayFairer Labs
+{{bold}}{{accent}}{{deco}}       ·        {{/}}  {{bold}}{{accent}}languages{{/}}{{dim}}:{{/}} Java, Kotlin, TypeScript, SQL, Groovy
+{{bold}}{{accent}}{{deco}}  ✦            ·{{/}}  {{bold}}{{accent}}frameworks{{/}}{{dim}}:{{/}} Spring Boot, React, GraphQL, WebSocket/STOMP
+{{bold}}{{accent}}{{deco}} ·       ✧      {{/}}  {{bold}}{{accent}}uptime{{/}}{{dim}}:{{/}} since 2023 @ Foster Moore, 2025 @ WayFairer
+                  {{bold}}{{accent}}email{{/}}{{dim}}:{{/}} {{link:mailto:huntjames379@gmail.com}}huntjames379@gmail.com{{/link}}
+                  {{bold}}{{accent}}linkedin{{/}}{{dim}}:{{/}} {{link:https://linkedin.com/in/jameshuntnz}}linkedin.com/in/jameshuntnz{{/link}}
+                  {{bold}}{{accent}}github{{/}}{{dim}}:{{/}} {{link:https://github.com/jameshuntnz}}github.com/jameshuntnz{{/link}}
+                  {{bg-paper}}   {{/}} {{bg-ink}}   {{/}} {{bg-sand}}   {{/}} {{bg-sand-soft}}   {{/}} {{bg-moss}}   {{/}}

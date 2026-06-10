@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>James Hunt — guest@jameshunt.nz:~$</title>
+        <meta
+            name="description"
+            content="A portfolio you ssh into. Look around — nothing's off limits."
+        />
+        <link rel="canonical" href="https://jameshunt.nz/" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://jameshunt.nz/" />
+        <meta property="og:title" content="James Hunt — guest@jameshunt.nz:~$" />
+        <meta
+            property="og:description"
+            content="A portfolio you ssh into. Look around — nothing's off limits."
+        />
+        <meta property="og:image" content="https://jameshunt.nz/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="James Hunt — guest@jameshunt.nz:~$" />
+        <meta
+            name="twitter:description"
+            content="A portfolio you ssh into. Look around — nothing's off limits."
+        />
+        <meta name="twitter:image" content="https://jameshunt.nz/og-image.png" />
+
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        <!-- Runs synchronously before first paint to avoid a light/dark flash —
+		     stored choice wins, otherwise falls back to the OS preference. -->
+        <script>
+            try {
+                let theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+                    ? 'dark'
+                    : 'light';
+                const stored = localStorage.getItem('jh-terminal-theme');
+                if (stored === 'light' || stored === 'dark') theme = stored;
+                document.documentElement.dataset.theme = theme;
+            } catch (e) {}
+        </script>
+        <link
+            rel="preload"
+            href="/fonts/JetBrainsMono-Regular.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/fonts/JetBrainsMono-Bold.woff2"
+            as="font"
+            type="font/woff2"
+            crossorigin
+        />
+    </head>
+    <body>
+        <main class="terminal" id="terminal" aria-label="Terminal">
+            <h1 class="sr-only">James Hunt — Portfolio Terminal</h1>
+            <div class="terminal-inner">
+                <div id="screen" role="log" aria-live="polite" aria-label="Terminal output"></div>
+                <div id="input-line">
+                    <span id="prompt" aria-hidden="true"></span>
+                    <span id="typed" aria-hidden="true"></span>
+                </div>
+            </div>
+            <!--suppress HtmlDeprecatedAttribute -->
+            <input
+                id="hidden-input"
+                type="text"
+                aria-label="Terminal command input"
+                aria-describedby="prompt"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+            />
+        </main>
+
+        <script type="module" src="/src/scripts/terminal.ts"></script>
+    </body>
+</html>

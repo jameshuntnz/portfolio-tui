@@ -1,0 +1,6 @@
+projects/
+
+  wayfairer   lorem ipsum dolor sit amet consectetur
+              (in testing, ahead of launch)
+
+Try: {{link:cmd:cat projects/wayfairer.md}}cat projects/wayfairer.md{{/link}}

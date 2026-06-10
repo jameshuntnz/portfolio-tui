@@ -1,0 +1,9 @@
+# Normalize to LF everywhere. Content under src/content/ is compiled
+# byte-for-byte into ANSI escapes and asserted exactly in tests, so
+# CRLF creeping in via checkout would break things.
+* text=auto eol=lf
+
+# Binary assets - never diff or convert these.
+*.png binary
+*.ico binary
+*.woff2 binary

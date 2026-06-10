@@ -1,0 +1,18 @@
+Available commands:
+
+  {{link:cmd:help}}help{{/link}}              show this message
+  {{link:cmd:whoami}}whoami{{/link}}            who am I looking at?
+  {{link:cmd:ls}}ls{{/link}} [path]         list files / directories
+  {{link:cmd:cd}}cd{{/link}} <path>         change directory (try ~, .., projects)
+  {{link:cmd:pwd}}pwd{{/link}}               print working directory
+  {{link:cmd:cat}}cat{{/link}} <file>        read a file
+  {{link:cmd:projects}}projects{{/link}}          list projects
+  {{link:cmd:contact}}contact{{/link}}           how to reach me
+  {{link:cmd:neofetch}}neofetch{{/link}}          system info, dev-style
+  {{link:cmd:history}}history{{/link}}           your command history
+  {{link:cmd:theme}}theme{{/link}} [light|dark|toggle]   switch color scheme
+  {{link:cmd:clear}}clear{{/link}}             clear the screen
+
+Tip: tab-completes paths, ↑/↓ moves through history.
+
+Try: {{link:cmd:cat about.txt}}cat about.txt{{/link}} or {{link:cmd:cat resume.txt}}cat resume.txt{{/link}}

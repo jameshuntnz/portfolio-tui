@@ -1,0 +1,17 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+indent_style = space
+indent_size = 2
+
+[*.{ts,html,css}]
+indent_size = 4
+
+# Content files compile byte-for-byte into ANSI output and are
+# exact-string-asserted in tests - don't let editors touch whitespace here.
+[src/content/**]
+insert_final_newline = unset
+trim_trailing_whitespace = unset

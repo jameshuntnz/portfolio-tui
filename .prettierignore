@@ -1,0 +1,10 @@
+dist/
+node_modules/
+test-results/
+playwright-report/
+coverage/
+pnpm-lock.yaml
+
+# Content compiles byte-for-byte into ANSI escapes and is exact-string
+# asserted in tests - don't let prettier touch it.
+src/content/

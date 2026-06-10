@@ -1,0 +1,5 @@
+Reach me here:
+
+  email      {{link:mailto:huntjames379@gmail.com}}huntjames379@gmail.com{{/link}}
+  linkedin   {{link:https://linkedin.com/in/jameshuntnz}}linkedin.com/in/jameshuntnz{{/link}}
+  github     {{link:https://github.com/jameshuntnz}}github.com/jameshuntnz{{/link}}

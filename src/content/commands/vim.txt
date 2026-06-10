@@ -1,0 +1,3 @@
+Type :q to exit.
+...
+kidding — there's no vim here. Try {{link:cmd:help}}help{{/link}}.
