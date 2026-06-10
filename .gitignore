@@ -28,3 +28,4 @@ coverage/
 
 # claude code local settings
 .claude/settings.local.json
+.claude/worktrees/
