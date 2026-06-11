@@ -14,6 +14,7 @@ A personal portfolio site built as a simulated terminal/TUI (Vite + vanilla TS, 
 - `pnpm test` — run the vitest suite (`vitest run`)
 - `pnpm test:coverage` — run the vitest suite with coverage report
 - `pnpm test:e2e` — run the Playwright e2e/a11y suite
+- `pnpm og-image` — regenerate `public/og-image.png` from a headless render of the site
 - `pnpm exec vitest run src/scripts/shell.test.ts` — run a single test file
 - `pnpm exec vitest run -t "pattern"` — run tests matching a name pattern
 - `pnpm exec tsc --noEmit` — type-check the project

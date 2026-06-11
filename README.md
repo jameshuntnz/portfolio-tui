@@ -19,6 +19,7 @@ compiles plain text content into real ANSI escape sequences.
 | `pnpm test`                         | Run the vitest suite                         |
 | `pnpm test:coverage`                | Run the vitest suite with coverage report    |
 | `pnpm test:e2e`                     | Run the Playwright e2e/a11y suite            |
+| `pnpm og-image`                     | Regenerate `public/og-image.png`             |
 | `pnpm exec vitest run -t "pattern"` | Run tests matching a name pattern            |
 | `pnpm exec tsc --noEmit`            | Type-check the project                       |
 | `pnpm lint`                         | Run ESLint                                   |
