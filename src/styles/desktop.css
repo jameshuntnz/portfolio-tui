@@ -1,0 +1,281 @@
+/* Desktop shell: polybar + floating window chrome. Reuses the palette custom
+   properties from terminal.css (--bg, --fg, --accent, --border, etc.) — no
+   new colours, just layout and window decoration. */
+
+:root {
+    --polybar-height: 32px;
+}
+
+/* --- boot splash --- */
+
+/* Covers the whole page on first load while splash.ts types out the
+   "Connecting..." sequence, then fades out once and is removed — the desktop
+   and its first window only render underneath afterwards. */
+#splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    padding: 28px 22px;
+    background: var(--bg);
+    transition: opacity 0.3s ease;
+}
+
+#splash.splash--hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#polybar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--polybar-height);
+    padding: 0 12px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    font-size: 13px;
+    user-select: none;
+}
+
+.polybar-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.polybar-brand {
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.polybar-clock {
+    font-variant-numeric: tabular-nums;
+    color: var(--fg-dim);
+}
+
+.polybar-theme-toggle,
+.polybar-new-window {
+    appearance: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--fg);
+    font: inherit;
+    font-size: 12px;
+    line-height: 1;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.polybar-theme-toggle:hover,
+.polybar-theme-toggle:focus-visible,
+.polybar-new-window:hover,
+.polybar-new-window:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+    outline: none;
+}
+
+.polybar-new-window:disabled {
+    color: var(--fg-dim);
+    cursor: not-allowed;
+}
+
+.polybar-new-window:disabled:hover,
+.polybar-new-window:disabled:focus-visible {
+    border-color: var(--border);
+    color: var(--fg-dim);
+}
+
+.workspace-dot {
+    appearance: none;
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.workspace-dot--active {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.workspace-dot:hover,
+.workspace-dot:focus-visible {
+    border-color: var(--accent);
+    outline: none;
+}
+
+#desktop {
+    position: relative;
+    height: calc(100% - var(--polybar-height));
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.desktop-hint {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 16px;
+    text-align: center;
+    color: var(--fg-dim);
+    font-size: 14px;
+    pointer-events: none;
+}
+
+#desktop.desktop--empty .desktop-hint {
+    display: flex;
+}
+
+.desktop-hint kbd {
+    font-family: inherit;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin: 0 2px;
+}
+
+/* --- floating windows --- */
+
+.window {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+}
+
+.window--focused {
+    border-color: var(--accent);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* Played once on open (window-manager.ts removes the class on
+   `animationend`) — a quick pop/settle so a new terminal feels launched
+   rather than just appearing. */
+@keyframes window-open {
+    from {
+        opacity: 0;
+        transform: scale(0.96) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.window--opening {
+    animation: window-open 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .window--opening {
+        animation: none;
+    }
+}
+
+.window-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 auto;
+    height: 28px;
+    padding: 0 4px 0 10px;
+    background: var(--bg-vignette);
+    color: var(--fg-dim);
+    font-size: 12px;
+    cursor: move;
+    user-select: none;
+}
+
+.window--focused .window-titlebar {
+    color: var(--fg);
+}
+
+.window-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.window-close {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-size: 14px;
+    line-height: 1;
+    padding: 2px 6px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.window-close:hover,
+.window-close:focus-visible {
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 14%, transparent);
+    outline: none;
+}
+
+.window-body {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.resize-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    cursor: nwse-resize;
+}
+
+.resize-handle::after {
+    content: '';
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid var(--border);
+    border-bottom: 2px solid var(--border);
+}
+
+@media (max-width: 640px) {
+    .polybar-new-window {
+        display: none;
+    }
+
+    .window {
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .window-titlebar,
+    .resize-handle {
+        display: none;
+    }
+
+    .window:not(.window--focused) {
+        display: none;
+    }
+}

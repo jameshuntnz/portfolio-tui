@@ -33,9 +33,10 @@
    the only derived values, and they're computed blends of the palette above,
    not new hexes. Light is the default; dark overrides via [data-theme]. */
 :root {
-    /* Shared between `.terminal-inner`'s default and small-viewport trailing
-	   padding, so the two stay in sync. */
-    --pad-bottom: 64px;
+    /* Trailing space below the prompt: one line on desktop, overridden on
+	   small viewports to roughly a software keyboard's height so the prompt
+	   isn't hidden behind it while typing. */
+    --pad-bottom: 1lh;
 
     --bg: #f1f1e7; /* paper */
     --fg: #2e312a; /* ink */
@@ -93,7 +94,7 @@ body {
    pins it to the latest line as output streams in. */
 .terminal {
     position: relative;
-    height: 100dvh;
+    height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
     /* No rubber-band bounce — a real terminal pane doesn't overscroll. */
@@ -103,8 +104,14 @@ body {
 }
 
 /* Vignette overlay — separated from background-color so axe can determine a
-   solid background colour for contrast checking (it can't resolve gradients). */
-.terminal::after {
+   solid background colour for contrast checking (it can't resolve gradients).
+   Fixed (not absolute) so axe can resolve a solid background colour for
+   contrast checking — it can't see through a gradient pseudo-element sized
+   to the element's own box. Scoped to the focused window only: these are
+   viewport-anchored, so every open `.terminal` would otherwise paint its own
+   full-viewport copy and the multiply-blended layers would compound into an
+   ever-darkening stack as more windows are opened. */
+.window--focused .terminal::after {
     content: '';
     position: fixed;
     inset: 0;
@@ -113,7 +120,7 @@ body {
     background: radial-gradient(ellipse at 50% 30%, transparent 50%, var(--bg-vignette) 145%);
 }
 
-.terminal::before {
+.window--focused .terminal::before {
     content: '';
     position: fixed;
     inset: 0;
@@ -132,8 +139,6 @@ body {
 .terminal-inner {
     position: relative;
     z-index: 2;
-    max-width: 880px;
-    margin: 0 auto;
     padding: 28px 22px var(--pad-bottom);
     min-height: 100%;
 }
@@ -209,7 +214,7 @@ body {
     outline: none;
 }
 
-#input-line {
+.input-line {
     display: flex;
     align-items: baseline;
     gap: 8px;
@@ -217,13 +222,13 @@ body {
     color: var(--fg);
 }
 
-#prompt {
+.prompt {
     color: var(--accent);
     white-space: nowrap;
     font-weight: 700;
 }
 
-#typed {
+.typed {
     white-space: pre-wrap;
     word-break: break-word;
 }
@@ -248,7 +253,7 @@ body {
     }
 }
 
-#hidden-input {
+.hidden-input {
     position: absolute;
     opacity: 0;
     width: 1px;
@@ -283,7 +288,7 @@ body {
 
 @media (max-width: 640px) {
     :root {
-        --pad-bottom: 48px;
+        --pad-bottom: 35vh;
     }
     .terminal-inner {
         padding: 18px 14px var(--pad-bottom);
@@ -292,9 +297,6 @@ body {
 }
 
 @media (max-width: 400px) {
-    :root {
-        --pad-bottom: 40px;
-    }
     .terminal-inner {
         padding: 14px 12px var(--pad-bottom);
         font-size: 12.5px;

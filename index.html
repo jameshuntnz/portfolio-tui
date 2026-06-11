@@ -57,30 +57,80 @@
             type="font/woff2"
             crossorigin
         />
+        <link rel="stylesheet" href="/src/styles/terminal.css" />
+        <link rel="stylesheet" href="/src/styles/desktop.css" />
     </head>
     <body>
-        <main class="terminal" id="terminal" aria-label="Terminal">
-            <h1 class="sr-only">James Hunt — Portfolio Terminal</h1>
-            <div class="terminal-inner">
-                <div id="screen" role="log" aria-live="polite" aria-label="Terminal output"></div>
-                <div id="input-line">
-                    <span id="prompt" aria-hidden="true"></span>
-                    <span id="typed" aria-hidden="true"></span>
-                </div>
-            </div>
-            <!--suppress HtmlDeprecatedAttribute -->
-            <input
-                id="hidden-input"
-                type="text"
-                aria-label="Terminal command input"
-                aria-describedby="prompt"
-                autocomplete="off"
-                autocapitalize="off"
-                autocorrect="off"
-                spellcheck="false"
-            />
-        </main>
+        <div id="splash" aria-hidden="true">
+            <div class="splash-lines"></div>
+        </div>
 
-        <script type="module" src="/src/scripts/terminal.ts"></script>
+        <div id="polybar" role="banner">
+            <div class="polybar-section polybar-left">
+                <span class="polybar-brand">jameshunt.nz</span>
+            </div>
+            <div class="polybar-section polybar-center polybar-workspaces"></div>
+            <div class="polybar-section polybar-right">
+                <span class="polybar-clock"></span>
+                <button
+                    type="button"
+                    class="polybar-theme-toggle"
+                    aria-label="Toggle theme"
+                ></button>
+                <button
+                    type="button"
+                    class="polybar-new-window"
+                    title="New terminal (Ctrl/Cmd+Enter)"
+                >
+                    + term
+                </button>
+            </div>
+        </div>
+
+        <div id="desktop" role="main">
+            <h1 class="sr-only">James Hunt — Portfolio Terminal</h1>
+            <p class="desktop-hint">
+                Press <kbd>Ctrl</kbd>/<kbd>Cmd</kbd>+<kbd>Enter</kbd> or click "+ term" to open a
+                window.
+            </p>
+        </div>
+
+        <template id="window-template">
+            <div class="window">
+                <div class="window-titlebar">
+                    <span class="window-title"></span>
+                    <button class="window-close" aria-label="Close window">×</button>
+                </div>
+                <div class="window-body">
+                    <div class="terminal" role="region" aria-label="Terminal">
+                        <div class="terminal-inner">
+                            <div
+                                class="screen"
+                                role="log"
+                                aria-live="polite"
+                                aria-label="Terminal output"
+                            ></div>
+                            <div class="input-line">
+                                <span class="prompt" aria-hidden="true"></span>
+                                <span class="typed" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <!--suppress HtmlDeprecatedAttribute -->
+                        <input
+                            class="hidden-input"
+                            type="text"
+                            aria-label="Terminal command input"
+                            autocomplete="off"
+                            autocapitalize="off"
+                            autocorrect="off"
+                            spellcheck="false"
+                        />
+                    </div>
+                </div>
+                <div class="resize-handle" aria-hidden="true"></div>
+            </div>
+        </template>
+
+        <script type="module" src="/src/scripts/main.ts"></script>
     </body>
 </html>
